@@ -29,17 +29,19 @@ var runAJAX = function(arg) {
 		url: path + arg,
 		method: "GET"
 	}).done(function (response) {
-		$('#drop').empty();
+		$('#displayed-movies').empty();
 		for (var i = 0; i < 9; i++) {
 			// htmlContent.push(response.results[i].title + "<br>");
 			htmlContent = `
-				<div style="width: 30%; display: inline-block;">
-					<h1>${response.results[i].title}</h1>
-					<p>Overview: ${response.results[i].overview}</p>
-					<img width="100%" src="https://image.tmdb.org/t/p/w500/${response.results[i].poster_path}">
+				<div class="card col-lg-4 col-sm-6 text-center mb-4">
+					<img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${response.results[i].poster_path}">
+					<div class="card-body">
+						<h3 class="card-title">${response.results[i].title}</h3>
+						<p class="card-text">${response.results[i].overview}</p>
+					</div>
 				</div>
 			`
-			$("#drop").append(htmlContent);
+			$("#displayed-movies").append(htmlContent);
 		}
 		console.log('updated');
 
